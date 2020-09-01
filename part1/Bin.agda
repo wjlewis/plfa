@@ -1,8 +1,8 @@
 module plfa.part1.Bin where
 
 import Relation.Binary.PropositionalEquality as Eq
-open Eq using (_≡_; refl)
-open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎)
+open Eq using (_≡_; refl; cong; sym)
+open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _≡⟨_⟩_; _∎)
 open import Data.Nat using (ℕ; zero; suc; _+_; _*_)
 
 data Bin : Set where
@@ -23,6 +23,20 @@ from : Bin → ℕ
 from ⟨⟩ = zero
 from (n O) = 2 * from n
 from (n I) = 1 + 2 * from n
+
+-- `from` is a homomorphism from `Bin` to `ℕ`
+from-homo : (b : Bin) → from (inc b) ≡ suc (from b)
+from-homo ⟨⟩ = refl
+from-homo (b O) = refl
+from-homo (b I) = {!!}
+
+-- `to` is an inverse for `from`
+to-inv-from : (b : Bin) → to (from b) ≡ b
+to-inv-from = {!!}
+
+-- `from` is an inverse for `to`
+from-inv-to : (n : ℕ) → from (to n) ≡ n
+from-inv-to = {!!}
 
 -- Testing `inc` (0-4)
 _ : inc ⟨⟩ ≡ ⟨⟩ I

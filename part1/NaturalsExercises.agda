@@ -19,4 +19,4 @@ to (suc n) = inc (to n)
 from : Bin → ℕ
 from ⟨⟩ = zero
 from (n O) = 2 * from n
-from (n I) = 2 * from n + 1
+from (n I) = 1 + 2 * from n
